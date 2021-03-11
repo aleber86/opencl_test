@@ -6,7 +6,7 @@
 double func(double y, double t){
     //Def. dy/dt 
     double res;
-    double pi = 4.0* atan(1.0);
+    double pi = 4.0f* atan(1.0f);
     res = sin(t)+pi*cos(t);
     return  res;
 
@@ -27,13 +27,13 @@ void subroutine_rk4( __global double *y_i,
     
     //Partian steps of integration
     k1 = h * func(y_i[thread],t_i);
-    k2 = h * func(y_i[thread] + k1/2.0, t_i+h/2.0);
-    k3 = h * func(y_i[thread] + k2/2.0, t_i+h/2.0);
+    k2 = h * func(y_i[thread] + k1/2.0f, t_i+h/2.0f);
+    k3 = h * func(y_i[thread] + k2/2.0f, t_i+h/2.0f);
     k4 = h * func(y_i[thread] + k3, t_i+h);
 
 
     //Output value 
-    y_o[id_c] = y_i[thread] + (k1 + 2.0 * k2 + 2.0 * k3 + k4)/6.0;
+    y_o[id_c] = y_i[thread] + (k1 + 2.0f * k2 + 2.0f * k3 + k4)/6.0f;
 
 /*  rk4    SUBROUTINE END           */
 }
